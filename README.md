@@ -1,2 +1,4 @@
 # auto-javascript-interactions
-This is a NODEJS Angular Project that has auto tracking and instrumentation of user actions done via New Relic One Platform (event listeners based)
+This is a javascript project that enables auto tracking and collection of user actions and interactions and adds it to New Relic Browser Agent Service as dynamically collected analytics
+
+

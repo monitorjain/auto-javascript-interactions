@@ -1,0 +1,319 @@
+{
+    "title": "Browser Analytics Dashboard",
+    "icon": "users",
+    "grid_column_count": 12,
+    "filter": {
+        "key_names": [
+            "pageUrl",
+            "appName",
+            "countryCode",
+            "city",
+            "userAgentOS",
+            "userAgentName"
+        ],
+        "event_types": [
+            "PageView"
+        ],
+        "filter_first": false
+    },
+    "owner": {
+        "email": "njain@newrelic.com",
+        "id": 1871895
+    },
+    "widgets": [
+        {
+            "title": "# of users does my site have?",
+            "nrql": "SELECT uniqueCount(session) FROM PageView since 60 minute ago until 10 seconds ago COMPARE WITH 1 hour ago",
+            "process_as": "billboard_comparison",
+            "width": 4,
+            "height": 3,
+            "row": 1,
+            "column": 1,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": null,
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "Which Apps Are Being Used?",
+            "nrql": "SELECT count(*) FROM PageView since 1 day ago FACET  appName",
+            "process_as": "facet_bar_chart",
+            "width": 4,
+            "height": 3,
+            "row": 1,
+            "column": 5,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "appName",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 545042
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Most Popular Browser Interactions",
+            "nrql": "SELECT count(*) FROM BrowserInteraction FACET browserInteractionName  ",
+            "process_as": "facet_bar_chart",
+            "width": 4,
+            "height": 3,
+            "row": 1,
+            "column": 9,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "pageUrl",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 1487136
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "What days are busiest?",
+            "nrql": "SELECT count(*) FROM PageView FACET weekdayOf(timestamp) SINCE 7 days ago",
+            "process_as": "facet_bar_chart",
+            "width": 4,
+            "height": 3,
+            "row": 4,
+            "column": 1,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "Weekday of timestamp",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 545042
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "What Country Are My Users In?",
+            "nrql": "SELECT count(*) FROM PageView since 1 day ago FACET  countryCode",
+            "process_as": "facet_pie_chart",
+            "width": 4,
+            "height": 3,
+            "row": 4,
+            "column": 5,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "countryCode",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 684254
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Most popular User Actions",
+            "nrql": "SELECT count(*) FROM PageAction since 1 day ago FACET  actionName",
+            "process_as": "facet_bar_chart",
+            "width": 4,
+            "height": 3,
+            "row": 4,
+            "column": 9,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "city",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 1487136
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "What Time Users Visit?",
+            "nrql": "SELECT count(*) FROM PageView FACET hourOf(timestamp) SINCE 7 days ago",
+            "process_as": "facet_bar_chart",
+            "width": 4,
+            "height": 3,
+            "row": 7,
+            "column": 1,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "Hour of timestamp",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 545042
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "What OS Are My Users Using?",
+            "nrql": "SELECT count(*) FROM PageView since 1 day ago FACET  userAgentOS",
+            "process_as": "facet_bar_chart",
+            "width": 4,
+            "height": 3,
+            "row": 7,
+            "column": 5,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "userAgentOS",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 545042
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Which Browsers Are Used?",
+            "nrql": "SELECT count(*) FROM PageView since 1 day ago FACET  userAgentName",
+            "process_as": "facet_bar_chart",
+            "width": 4,
+            "height": 3,
+            "row": 7,
+            "column": 9,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "userAgentName",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 545042
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Page Load Time - Histogram",
+            "nrql": "SELECT histogram(duration) FROM PageView SINCE 1 day ago",
+            "process_as": "histogram",
+            "width": 4,
+            "height": 3,
+            "row": 10,
+            "column": 1,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": null,
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "Average Overall Response",
+            "nrql": "SELECT average(duration) FROM PageView since 1 day ago FACET appName TIMESERIES AUTO",
+            "process_as": "faceted_line_chart",
+            "width": 8,
+            "height": 3,
+            "row": 10,
+            "column": 5,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "appName",
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "End User & App Server Performance",
+            "nrql": "SELECT average(duration) as ' End User Time', average(backendDuration) as ' App Server Time ' FROM PageView SINCE 2 minutes ago UNTIL 10 seconds ago TIMESERIES",
+            "process_as": "line_chart",
+            "width": 4,
+            "height": 3,
+            "row": 13,
+            "column": 1,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": null,
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "JS - User Action Error trend",
+            "nrql": "SELECT count(*) FROM JavaScriptError TIMESERIES FACET `errorMessage`, `errorClass` SINCE 604800 seconds ago EXTRAPOLATE",
+            "process_as": "faceted_line_chart",
+            "width": 4,
+            "height": 3,
+            "row": 13,
+            "column": 5,
+            "event_types": null,
+            "facet": null,
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "User Actions - Apdex score",
+            "nrql": "SELECT apdex(timeSinceLoad, t: 2.0) FROM PageAction FACET actionName",
+            "process_as": "facet_bar_chart",
+            "width": 4,
+            "height": 3,
+            "row": 13,
+            "column": 9,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "city",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 1487136
+                }
+            },
+            "notes": null
+        },
+        {
+            "title": "Live Sessions - User Journey breakdown",
+            "nrql": "SELECT timeSinceLoad, actionName, session FROM PageAction since 60 minute ago until 10 seconds ago limit 200",
+            "process_as": "event_table",
+            "width": 8,
+            "height": 6,
+            "row": 16,
+            "column": 1,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": null,
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "Which Pages Are Slowest?",
+            "nrql": "SELECT average(duration) FROM BrowserInteraction since 1 day ago FACET browserInteractionName TIMESERIES AUTO",
+            "process_as": "faceted_line_chart",
+            "width": 4,
+            "height": 3,
+            "row": 16,
+            "column": 9,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "pageUrl",
+            "customizations": null,
+            "notes": null
+        },
+        {
+            "title": "Isolation by Domprocessgin",
+            "nrql": "select count(*) from PageView facet cases(where domProcessingDuration < 2, where domProcessingDuration > 2 and domProcessingDuration < 5) since 1 week ago",
+            "process_as": "facet_bar_chart",
+            "width": 4,
+            "height": 3,
+            "row": 19,
+            "column": 9,
+            "event_types": [
+                "PageView"
+            ],
+            "facet": "cases",
+            "customizations": {
+                "drilldown": {
+                    "dashboard_id": 545042
+                }
+            },
+            "notes": null
+        }
+    ],
+    "dashboard_account_id": "<ADD YOUR RPM ID>"
+}
