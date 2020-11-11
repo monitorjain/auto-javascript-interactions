@@ -15,6 +15,8 @@ To add this library to your Angular or React Project, simply add the following t
 
 Once the library has been added as prescribed in the image above, simply exercise the Angular or React app to generate enough events.
 
+![Output](https://user-images.githubusercontent.com/45892212/98805651-068e7780-246c-11eb-8a19-2842a89f8185.png)
+
 The auto instrumentation library current supports:
 * Scroll tracking X and Y axis
 * clicks on links and interactive elements
@@ -22,6 +24,8 @@ The auto instrumentation library current supports:
 * Full screens and screen resizes
 * Keyboard events
 * Input actions
+
+Bonus: You may also repurpose my code to use dashboard services and Observability databases other than [New Relic One](http://one.newrelic.com)
 
 Note:
 If you want to add more event tracking, simply fork the project or create an issue. 
